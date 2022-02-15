@@ -13,10 +13,8 @@ class Singleton {
 
     static _getInstance() {
         if (this._instance) return this._instance;
-        else {
-            this._instance = new Singleton(data);
-            return this._instance;
-        }
+        this._instance = new Singleton(data);
+        return this._instance;   
     }
 
     get password() {
