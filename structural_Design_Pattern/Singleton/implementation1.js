@@ -3,7 +3,7 @@ const data = {
     password: new Date().getTime(),
 }
 
-// Singleton Pattern
+// ------------------ Singleton Pattern
 class Singleton {
     static _instance;
 

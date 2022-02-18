@@ -22,7 +22,7 @@ const WishList = class {
     }
     addToWishList(productName) {
         console.log(`add ${productName} in products`);
-        this.products.unshift(productName);
+        this.products.push(productName);
     }
 }
 

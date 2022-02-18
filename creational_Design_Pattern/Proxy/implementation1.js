@@ -1,4 +1,4 @@
-// Fake data
+// Fake API data
 const fakeData = {
     data: [
         {"name":"Amsterdam","latLng":"52.3700° N, 4.8900° E"},
@@ -10,7 +10,6 @@ class GeoLoc {
     constructor(data) {
         this.responseAPI = data;
     }
-
     getLatLng(city) {
         console.log('from API');
         const cityData = this.responseAPI.data.filter((cityData) => {
@@ -31,7 +30,6 @@ class ProxyGeoLoc {
         this.cache = [];
         this.geoLoc = new GeoLoc(fakeData);
     }
-
     getLatLng(city) {
         const cachedData = this.cache.find((cityData) => {
             return cityData.name === city;
@@ -41,7 +39,7 @@ class ProxyGeoLoc {
             return cachedData;
         }
         const data = this.geoLoc.getLatLng(city);
-        this.cache.unshift(data);
+        this.cache.push(data);
         return data;
     }
 }

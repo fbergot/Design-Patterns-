@@ -10,7 +10,7 @@ const moviesDuration = [
     },
 ]
 
-// Constuctor Pattern
+// ------------- Constuctor Pattern
 class MyConstructor {
     constructor(data) {
         this._movieTitle = data.movie;

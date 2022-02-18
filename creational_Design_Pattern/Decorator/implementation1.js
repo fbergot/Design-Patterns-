@@ -4,7 +4,7 @@ class User {
     }
 }
 
-// Decorator
+// ------------------- Decorator
 const userWithSayHello = function (userInstance) {
     userInstance.sayHello = function () {
         console.log('Hello !');

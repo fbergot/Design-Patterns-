@@ -9,13 +9,14 @@ class Animal {
         this.name = data.name;
     }
 }
+
 class Car {
     constructor(data) {
         this.color = data.color;
     }
 }
 
-// Factory Pattern
+// -------------------- Factory Pattern
 class Factory {
     constructor(data, type) {
         switch (type) {
