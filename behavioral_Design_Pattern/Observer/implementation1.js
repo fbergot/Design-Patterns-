@@ -8,7 +8,7 @@ const Subject = class {
         this.observers.push(observer);
     }
     unsubscribe(observer) {
-        this.observers = this.observers.filter(callback => callback !== observer);
+        this.observers = this.observers.filter(obsrv => obsrv !== observer);
     }
     trigger(productName) {
         this.observers.forEach(observer => {
