@@ -3,7 +3,6 @@ const Subject = class {
     constructor() {
         this.observers = [];
     }
-
     subscribe(observer) {
         this.observers.push(observer);
     }
