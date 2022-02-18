@@ -9,10 +9,9 @@ class ContextSeason {
         ];
         this._currentState = this.states[0];
     }
-
     handleState() {
         const lengthState = this.states.length;
-        const currentStateIndex = this.states.findIndex((seasonInst) => seasonInst.season === this._currentState.season);
+        const currentStateIndex = this.states.findIndex((seasonInst) => Object.is(seasonInst, this._currentState));
         if (currentStateIndex < lengthState - 1) {
             this._currentState = this.states[currentStateIndex + 1];
         } else {
