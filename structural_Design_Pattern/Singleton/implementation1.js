@@ -1,19 +1,14 @@
-// Fake data
-const data = {
-    password: new Date().getTime(),
-}
-
 // ------------------ Singleton Pattern
 class Singleton {
     static _instance;
 
-    constructor(data) {
-        this._password = data.password
+    constructor() {
+        this._password = new Date().getTime()
     }
 
     static _getInstance() {
         if (this._instance) return this._instance;
-        this._instance = new Singleton(data);
+        this._instance = new Singleton();
         return this._instance;   
     }
 
