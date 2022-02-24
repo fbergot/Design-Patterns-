@@ -61,5 +61,5 @@ function compare(n1: number, n2: number, n: number) {
    }
 }
 
-compare(5, 9, 10); // n1 + n2 is more big than 10 ; < 10 !!
+compare(5, 9, 10); // n1 + n2 is more big than 10 ; > 10 !!
 compare(1, 2, 10); // n1 + n2 is less big than 10
