@@ -13,7 +13,7 @@ class CommandAllumerLampe implements Command {
     }
 
     public executer(): void {
-        this.lampe.marche(); 
+        this.lampe.marche() 
     }
 }
 
@@ -38,8 +38,10 @@ class Telecommand {
 
 const lampe = new Lampe;
 const lampe2 = new Lampe2;
+
 const commandAllumerLampe = new CommandAllumerLampe(lampe);
 const commandAllumerLampe2 = new CommandAllumerLampe(lampe2);
+
 const telecommande = new Telecommand();
 
 telecommande.setCommand(commandAllumerLampe);
