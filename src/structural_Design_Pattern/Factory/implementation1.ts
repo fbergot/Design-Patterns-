@@ -1,11 +1,11 @@
-const data = [{ name: "Petter" }, { color: "red" }] as const;
+const data: DataType_2 = [{ name: "Petter" }, { color: "red" }];
 
 type DataType_2 = readonly [{ name: string }, { color: string }];
 
 class Animal {
    name: string;
 
-   constructor(data: DataType_2[0]) {
+   constructor(data: { name: string }) {
       this.name = data.name;
    }
 }
@@ -13,14 +13,14 @@ class Animal {
 class Car {
    color: string;
 
-   constructor(data: DataType_2[1]) {
+   constructor(data: { color: string }) {
       this.color = data.color;
    }
 }
 
 // ---------------------------- Factory Pattern
 class Factory {
-   constructor(data: DataType_2, type: string) {
+   constructor(type: string) {
       switch (type) {
          case "car":
             return new Car(data[1]);
@@ -32,8 +32,8 @@ class Factory {
    }
 }
 
-const animal = new Factory(data, "animal");
-const car = new Factory(data, "car");
+const animal = new Factory("animal");
+const car = new Factory("car");
 
 console.log(animal); // Animal { name: 'Petter' }
 console.log(car); // Car { color: 'red' }
