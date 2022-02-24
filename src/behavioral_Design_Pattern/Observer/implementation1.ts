@@ -1,5 +1,5 @@
 interface Observer {
-   addToWishList(productName?: string): void;
+   addToWishList(productName: string): void;
 }
 // ------------------------ Observer
 const Subject = class {

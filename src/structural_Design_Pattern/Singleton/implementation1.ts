@@ -1,6 +1,7 @@
-// ------------------ Singleton Pattern
+// -------------------------------- Singleton Pattern
 class Singleton {
-    static _instance;
+    static _instance: Singleton;
+    _password: number;
 
     constructor() {
         this._password = new Date().getTime()
