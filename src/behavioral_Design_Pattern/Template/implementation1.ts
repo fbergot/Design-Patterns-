@@ -13,13 +13,13 @@ const moviesData = [
       year: "1991",
    },
 ];
-type Movies = { moviesName: string; year: string };
+
+type Movies = { movieName: string; year: string };
 
 // Template
 class Search {
    filterMovies?: (query: string) => Movies[];
    movies: Movies[];
-   // filter(query: string): Movies[];
 
    constructor(movies: Movies[]) {
       this.movies = movies;
@@ -30,27 +30,27 @@ class Search {
 }
 
 class SearchByName extends Search {
-   constructor(movies) {
+   constructor(movies: Movies[]) {
       super(movies);
-   }
-   filterMovies(query) {
-      return this.movies.filter((movie) =>
-         movie.movieName.toLowerCase().startsWith(query.toLowerCase())
-      );
+      this.filterMovies = query => {
+         return this.movies.filter(movie =>
+            movie.movieName.toLowerCase().startsWith(query.toLowerCase())
+         );
+      };
    }
 }
 
 class SearchByYear extends Search {
-   constructor(movies) {
+   constructor(movies: Movies[]) {
       super(movies);
-   }
-   filterMovies(query) {
-      return this.movies.filter((movie) => Number.parseInt(movie.year) === query);
+      this.filterMovies = query => {
+         return this.movies.filter(movie => movie.year === query);
+      };
    }
 }
 
 const searchByYear = new SearchByYear(moviesData);
-console.log(searchByYear.search(1991)); // [ { movieName: 'Terminator 2', year: '1991' } ]
+console.log(searchByYear.search("1991")); // [ { movieName: 'Terminator 2', year: '1991' } ]
 
 const searchByName = new SearchByName(moviesData);
 console.log(searchByName.search("pre")); // [ { movieName: 'Predator', year: '1987' } ]
