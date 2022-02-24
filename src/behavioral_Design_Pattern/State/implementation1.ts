@@ -1,5 +1,8 @@
 // ---------------------------------------------- State Pattern
 class ContextSeason {
+    states: Season[];
+    _currentState: Season;
+
     constructor() {
         this.states = [
             new Season('spring'),
@@ -9,7 +12,7 @@ class ContextSeason {
         ];
         this._currentState = this.states[0];
     }
-    handleState() {
+    handleState(): void {
         const lengthState = this.states.length;
         const currentStateIndex = this.states.findIndex((seasonInst) => Object.is(seasonInst, this._currentState));
         if (currentStateIndex < lengthState - 1) {
@@ -18,17 +21,19 @@ class ContextSeason {
             this._currentState = this.states[0];
         }
     }
-    get currentSeason() {
+    get currentSeason(): string {
         return this._currentState.season;
     }
 }
 
 // Generation state
 class Season {
-    constructor(season) {
+    _season: string;
+
+    constructor(season: string) {
         this._season = season;
     }
-    get season() {
+    get season(): string {
         return this._season;
     }
 }

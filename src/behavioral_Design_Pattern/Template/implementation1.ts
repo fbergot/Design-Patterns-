@@ -14,12 +14,19 @@ const moviesData = [
         year: '1991'
     },
 ]
+type Movies = {moviesName: string; year: string};
+
 // Template
 class Search {
-    constructor(movies) {
+    filterMovies?: (query: string) => Movies[]
+    movies: Movies[];
+    // filter(query: string): Movies[];
+
+    constructor(movies: Movies[]) {
+        this.filterMovies;
         this.movies = movies;
     }
-    search(query) {
+    search(query: string) {
         return this.filterMovies(query);
     }
 }

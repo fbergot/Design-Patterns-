@@ -1,5 +1,5 @@
 // Fake API data 1
-const data = [
+export const data = [
     {
         name: 'Florian', age: 35
     },
@@ -8,13 +8,15 @@ const data = [
     },
 ]
 
+type Data = {name: string, age: number}[]
 // -------------- 1
 class GetUser {
-    constructor(data) {
+    users: Data;
+    constructor(data: Data) {
         this.users = data;
     }
 
-    get usersAge() {
+    get usersAge(): number[]{
         return this.users.map((user) => {
             return user.age;
         })
@@ -22,28 +24,25 @@ class GetUser {
 }
 // ------------- 2
 class GetUser2 {    
-    static getUsersAge(userData) {
+    static getUsersAge(userData: Data): number[] {
         return userData.map((user) => {
             return user.age;
         })
     }
 }
 
-const getUserInst = new GetUser(data);
-logAverageAge(getUserInst.usersAge);// 26.5
-
-// --------------adapter (2 -> 1)
-class Adapter {
-    constructor(userData) {
+// -------------------------------- Adapter (2 -> 1)
+export class Adapter {
+    usersAge: number[];
+    constructor(userData: Data) {
         this.usersAge = GetUser2.getUsersAge(userData);
     }
 }
 
-const getUser2Inst = new Adapter(data);
-logAverageAge(getUser2Inst.usersAge);// 26.5
 
 
-function logAverageAge(ages) {
+
+export function logAverageAge(ages: number[]) {
     const sum = ages.reduce((acc, curr) => acc + curr);
     const average = sum / ages.length;
     console.log(average);

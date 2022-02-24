@@ -5,7 +5,7 @@ const fakeData = {
         {"name":"London","latLng":"51.5171° N, 0.1062° W"}
     ]
 }
-
+ 
 class GeoLoc {
     constructor(data) {
         this.responseAPI = data;

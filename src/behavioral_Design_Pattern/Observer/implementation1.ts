@@ -1,15 +1,20 @@
+
+interface Observer {
+    addToWishList(productName?: string) : void;
+}
 // ------------------------ Observer
 const Subject = class {
+    observers: Observer[];
     constructor() {
         this.observers = [];
     }
-    subscribe(observer) {
+    subscribe(observer: Observer) {
         this.observers.push(observer);
     }
-    unsubscribe(observer) {
+    unsubscribe(observer: Observer) {
         this.observers = this.observers.filter(obsrv => obsrv !== observer);
     }
-    trigger(productName) {
+    trigger(productName: string) {
         this.observers.forEach(observer => {
             observer.addToWishList(productName);
         })
@@ -17,20 +22,22 @@ const Subject = class {
 }
 
 const WishList = class {
+    products: string[]
     constructor() {
         this.products = [];
     }
-    addToWishList(productName) {
+    addToWishList(productName: string) {
         console.log(`add ${productName} in products`);
         this.products.push(productName);
     }
 }
 
 const Mailer = class {
-    constructor(email) {
+    email: string;
+    constructor(email: string) {
         this.email = email;
     }
-    addToWishList(productName) {
+    addToWishList(productName: string) {
         console.log(`Send email to ${this.email} with ${productName}`);
     }
 }
