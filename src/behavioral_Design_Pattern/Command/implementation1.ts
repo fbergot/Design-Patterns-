@@ -1,50 +1,78 @@
 // Pattern Command
-import {Lampe, Lampe2} from './Lampe';
+import { Lampe, Lampe2 } from "./Lampe";
+import Television from "./Television";
 
 interface Command {
-    executer() : void
+   start(): void;
+   stop(): void;
 }
 
 class CommandAllumerLampe implements Command {
-    lampe: Lampe;
+   lampe: Lampe;
+   constructor(lampe: Lampe) {
+      this.lampe = lampe;
+   }
+   public start(): void {
+      this.lampe.marche();
+   }
+   public stop(): void {
+      this.lampe.arret();
+   }
+}
 
-    constructor(lampe: Lampe) {
-        this.lampe = lampe;
-    }
-
-    public executer(): void {
-        this.lampe.marche() 
-    }
+class CommandTele implements Command {
+   tele: Television;
+   constructor(tele: Television) {
+      this.tele = tele;
+   }
+   public start(): void {
+      this.tele.on();
+   }
+   public stop(): void {
+      this.tele.off();
+   }
 }
 
 class Telecommand {
-    emplacement: Command[];
+   emplacement: Command[];
 
-    constructor() {
-        this.emplacement = [];
-    }
+   constructor() {
+      this.emplacement = [];
+   }
 
-    public setCommand(command: Command) {
-        this.emplacement.push(command);
-    }
+   public setCommand(command: Command) {
+      this.emplacement.push(command);
+   }
 
-    public boutonPress() {
-        if(this.emplacement.length){
-            this.emplacement.forEach((func) => func.executer());
-
-        }
-    }
+   public start(indexEmp: number[]) {
+      if (this.emplacement.length) {
+         this.emplacement.forEach((func, index) => {
+            if (indexEmp.includes(index)) func.start();
+         });
+      }
+   }
+   public end(indexEmp: number[]) {
+      if (this.emplacement.length) {
+         this.emplacement.forEach((func, index) => {
+            if (indexEmp.includes(index)) func.stop();
+         });
+      }
+   }
 }
 
-const lampe = new Lampe;
-const lampe2 = new Lampe2;
+const lampe = new Lampe();
+const lampe2 = new Lampe2();
 
 const commandAllumerLampe = new CommandAllumerLampe(lampe);
 const commandAllumerLampe2 = new CommandAllumerLampe(lampe2);
+
+const commandTele = new CommandTele(new Television());
 
 const telecommande = new Telecommand();
 
 telecommande.setCommand(commandAllumerLampe);
 telecommande.setCommand(commandAllumerLampe2);
+telecommande.setCommand(commandTele);
 
-telecommande.boutonPress();
+telecommande.start([0, 1, 2]);
+telecommande.end([1, 2]);
