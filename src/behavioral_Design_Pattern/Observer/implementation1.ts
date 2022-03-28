@@ -11,15 +11,14 @@ const Subject = class {
       this.observers.push(observer);
    }
    unsubscribe(observer: Observer) {
-      this.observers = this.observers.filter((obsrv) => obsrv !== observer);
+      this.observers = this.observers.filter(obsrv => obsrv !== observer);
    }
    trigger(productName: string) {
-      this.observers.forEach((observer) => {
+      this.observers.forEach(observer => {
          observer.addToWishList(productName);
       });
    }
 };
-
 const WishList = class {
    products: string[];
    constructor() {
@@ -30,7 +29,6 @@ const WishList = class {
       this.products.push(productName);
    }
 };
-
 const Mailer = class {
    email: string;
    constructor(email: string) {
@@ -40,7 +38,6 @@ const Mailer = class {
       console.log(`Send email to ${this.email} with ${productName}`);
    }
 };
-
 const subject = new Subject();
 
 const mailer = new Mailer("flo@test.fr");

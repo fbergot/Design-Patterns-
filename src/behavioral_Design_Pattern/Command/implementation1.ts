@@ -8,7 +8,7 @@ interface Command {
 }
 
 class CommandAllumerLampe implements Command {
-   lampe: Lampe;
+   protected lampe: Lampe;
    constructor(lampe: Lampe) {
       this.lampe = lampe;
    }
@@ -21,7 +21,7 @@ class CommandAllumerLampe implements Command {
 }
 
 class CommandTele implements Command {
-   tele: Television;
+   protected tele: Television;
    constructor(tele: Television) {
       this.tele = tele;
    }
@@ -34,7 +34,7 @@ class CommandTele implements Command {
 }
 
 class Telecommand {
-   emplacement: Command[];
+   private emplacement: Command[];
 
    constructor() {
       this.emplacement = [];

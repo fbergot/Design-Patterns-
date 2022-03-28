@@ -18,13 +18,13 @@ type Movies = { movieName: string; year: string };
 
 // Template
 class Search {
-   filterMovies?: (query: string) => Movies[];
-   movies: Movies[];
+   protected filterMovies?: (query: string) => Movies[];
+   protected movies: Movies[];
 
    constructor(movies: Movies[]) {
       this.movies = movies;
    }
-   search(query: string) {
+   search(query: string): Movies[] | null {
       return this.filterMovies ? this.filterMovies(query) : null;
    }
 }
@@ -32,8 +32,8 @@ class Search {
 class SearchByName extends Search {
    constructor(movies: Movies[]) {
       super(movies);
-      this.filterMovies = query => {
-         return this.movies.filter(movie =>
+      this.filterMovies = (query) => {
+         return this.movies.filter((movie) =>
             movie.movieName.toLowerCase().startsWith(query.toLowerCase())
          );
       };
@@ -43,8 +43,8 @@ class SearchByName extends Search {
 class SearchByYear extends Search {
    constructor(movies: Movies[]) {
       super(movies);
-      this.filterMovies = query => {
-         return this.movies.filter(movie => movie.year === query);
+      this.filterMovies = (query) => {
+         return this.movies.filter((movie) => movie.year === query);
       };
    }
 }

@@ -5,6 +5,7 @@ import "./src/behavioral_Design_Pattern/Command/implementation1";
 // Observer
 import "./src/behavioral_Design_Pattern/Observer/implementation1";
 import "./src/behavioral_Design_Pattern/Observer/implementation2";
+import "./src/behavioral_Design_Pattern/Observer/implementation3";
 
 // State
 import "./src/behavioral_Design_Pattern/State/implementation1";
