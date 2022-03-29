@@ -1,34 +1,30 @@
 import FecthData from "./FetchData";
 
-type Observed = (arg?: any) => void;
+type Subscriber = (arg?: any) => void;
 
 class Observer {
-   observed: Observed[];
+   subscribers: Subscriber[];
    funcInit: (observer: Observer) => void;
    pipe: any;
 
    constructor(funcInit: (observer: Observer) => void) {
-      this.observed = [];
+      this.subscribers = [];
       this.funcInit = funcInit;
       this.funcInit(this);
       this.pipe;
    }
 
-   subscribe(observed: Observed) {
-      this.observed.push(observed);
+   subscribe(observed: Subscriber) {
+      this.subscribers.push(observed);
    }
 
-   next(arg: any) {
-      this.observed.forEach((ob) => {
-         if (this.pipe) {
-            ob(this.pipe(arg));
-         } else {
-            ob(arg);
-         }
+   next<U>(arg: U) {
+      this.subscribers.forEach((ob) => {
+         this.pipe ? ob(this.pipe(arg)) : ob(arg);
       });
    }
 
-   addPipe(funcPipe: (arg: any) => any) {
+   addPipe<T, R>(funcPipe: (arg: T) => R) {
       this.pipe = funcPipe;
    }
 }
@@ -44,7 +40,7 @@ observer1$.addPipe((arg) => {
    return `count: ${arg}`;
 });
 
-observer1$.subscribe((arg: any) => {
+observer1$.subscribe((arg) => {
    console.log(arg);
 });
 
