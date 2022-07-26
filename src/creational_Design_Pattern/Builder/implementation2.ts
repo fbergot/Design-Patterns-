@@ -38,9 +38,7 @@ class Navbar_Builder implements Navbar {
          this.width = 100;
       } else {
          if (width > 300) {
-            throw new Error(
-               `Bad value, max 300px, given: ${width || "nothing"}.`
-            );
+            throw new Error(`Bad value, max 300px, given: ${width}.`);
          }
          this.width = width;
       }
